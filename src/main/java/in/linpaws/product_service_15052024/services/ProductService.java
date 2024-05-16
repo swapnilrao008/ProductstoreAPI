@@ -6,4 +6,5 @@ import in.linpaws.product_service_15052024.models.Product;
 
 public interface ProductService {
     public ProductResponseDto getSingleProduct(int productId);
+    public ProductResponseDto getAllProducts(int productId);
 }

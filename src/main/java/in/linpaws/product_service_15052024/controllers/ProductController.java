@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class ProductController {
 
@@ -20,4 +23,13 @@ public class ProductController {
         return productService.getSingleProduct(productId);
 
     }
+    @GetMapping("/products")
+    public List<ProductResponseDto> getAllProductDetail(){
+        List<ProductResponseDto> list=new ArrayList<>();
+        for(int i=1;i<=20;i++) {
+            list.add(productService.getAllProducts(i));
+        }
+return list;
+    }
+
 }
