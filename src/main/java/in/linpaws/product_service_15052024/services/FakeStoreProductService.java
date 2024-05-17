@@ -1,5 +1,6 @@
 package in.linpaws.product_service_15052024.services;
 
+import in.linpaws.product_service_15052024.dtos.ProductRequestDto;
 import in.linpaws.product_service_15052024.dtos.ProductResponseDto;
 import in.linpaws.product_service_15052024.dtos.fakeStoreDTO;
 import in.linpaws.product_service_15052024.models.Category;
@@ -69,6 +70,25 @@ public class FakeStoreProductService implements ProductService {
         fakeStoreDTO response=restTemplate.postForObject("http://fakestoreapi.com/products/",FakestoreDto,fakeStoreDTO.class);
 
         return response.toproductResponseDto();
+    }
+
+    @Override
+    public ProductResponseDto modifyProduct(int productId,String title,String description,int id,double price,String imageUrl,String category)
+    {
+
+        fakeStoreDTO FakeStoreDTO=restTemplate.getForObject(
+                "http://fakestoreapi.com/products/" + productId,fakeStoreDTO.class
+
+        );
+        FakeStoreDTO.setId(productId);
+        FakeStoreDTO.setPrice(price);
+        FakeStoreDTO.setCategory(category);
+        FakeStoreDTO.setDescription(description);
+        FakeStoreDTO.setImage(imageUrl);
+        FakeStoreDTO.setTitle(title);
+
+        //fakeStoreDTO response=restTemplate.patchForObject("http://fakestoreapi.com/products/"+productId,FakeStoreDTO,fakeStoreDTO.class);
+        return FakeStoreDTO.toproductResponseDto();
     }
 }
 

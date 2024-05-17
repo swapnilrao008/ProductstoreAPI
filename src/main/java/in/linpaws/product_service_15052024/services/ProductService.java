@@ -1,5 +1,6 @@
 package in.linpaws.product_service_15052024.services;
 
+import in.linpaws.product_service_15052024.dtos.ProductRequestDto;
 import in.linpaws.product_service_15052024.dtos.ProductResponseDto;
 import in.linpaws.product_service_15052024.dtos.fakeStoreDTO;
 import in.linpaws.product_service_15052024.models.Product;
@@ -15,5 +16,6 @@ public interface ProductService {
    public List<ProductResponseDto> getCategoryDetail(String category);
     public ProductResponseDto addProduct(String title,String description,int id,double price,String imageUrl,String category);
 
+    public ProductResponseDto modifyProduct(int productId,String title,String description,int id,double price,String imageUrl,String category);
 }
 

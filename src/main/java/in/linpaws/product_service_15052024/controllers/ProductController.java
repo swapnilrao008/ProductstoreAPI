@@ -63,5 +63,24 @@ return list;
 
 }
 
+@PatchMapping("/products/{id}")
+public ProductResponseDto updateProduct(@PathVariable ("id") int productId,@RequestBody ProductRequestDto productRequestDto)
+{
+    ProductResponseDto productResponseDto=productService.modifyProduct(
+            productId,
+            productRequestDto.getTitle(),
+            productRequestDto.getDescription(),
+            productRequestDto.getId(),
+            productRequestDto.getPrice(),
+            productRequestDto.getImage(),
+            productRequestDto.getCategory()
+
+    );
+
+    return productResponseDto;
+
+   //return productService.modifyProduct(productId,productRequestDto);
+}
+
 
 }
