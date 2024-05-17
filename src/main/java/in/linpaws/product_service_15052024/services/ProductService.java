@@ -13,4 +13,7 @@ public interface ProductService {
     public List<String> getAllCategories();
 
    public List<ProductResponseDto> getCategoryDetail(String category);
+    public ProductResponseDto addProduct(String title,String description,int id,double price,String imageUrl,String category);
+
 }
+

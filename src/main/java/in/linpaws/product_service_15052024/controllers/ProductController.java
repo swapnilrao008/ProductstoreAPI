@@ -1,10 +1,10 @@
 package in.linpaws.product_service_15052024.controllers;
 
+import in.linpaws.product_service_15052024.dtos.ProductRequestDto;
 import in.linpaws.product_service_15052024.dtos.ProductResponseDto;
+import in.linpaws.product_service_15052024.dtos.fakeStoreDTO;
 import in.linpaws.product_service_15052024.services.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,7 @@ public class ProductController {
         this.productService = productService;
     }
 
+    //get maping
     @GetMapping("/products/categories")
     public List<String> getAllCategories(){
         return productService.getAllCategories();
@@ -43,6 +44,24 @@ public class ProductController {
         }
 return list;
     }
+
+    //post maping
+@PostMapping("/products")
+    public ProductResponseDto createProduct(@RequestBody ProductRequestDto productRequestDto){
+
+        ProductResponseDto productResponseDto=productService.addProduct(
+                productRequestDto.getTitle(),
+                productRequestDto.getDescription(),
+                productRequestDto.getId(),
+                productRequestDto.getPrice(),
+                productRequestDto.getImage(),
+                productRequestDto.getCategory()
+
+        );
+
+        return productResponseDto;
+
+}
 
 
 }

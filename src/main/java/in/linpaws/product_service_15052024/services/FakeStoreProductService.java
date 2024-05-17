@@ -2,6 +2,7 @@ package in.linpaws.product_service_15052024.services;
 
 import in.linpaws.product_service_15052024.dtos.ProductResponseDto;
 import in.linpaws.product_service_15052024.dtos.fakeStoreDTO;
+import in.linpaws.product_service_15052024.models.Category;
 import in.linpaws.product_service_15052024.models.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -53,6 +54,21 @@ public class FakeStoreProductService implements ProductService {
             list.add(fakeStoreDTO.toproductResponseDto());
         }
         return list;
+    }
+
+    @Override
+    public ProductResponseDto addProduct(String title,String description,int id,double price,String imageUrl,String category)
+    {
+        fakeStoreDTO FakestoreDto=new fakeStoreDTO();
+        FakestoreDto.setId(id);
+        FakestoreDto.setCategory(category);
+        FakestoreDto.setDescription(description);
+        FakestoreDto.setPrice(price);
+        FakestoreDto.setTitle(title);
+        FakestoreDto.setImage(imageUrl);
+        fakeStoreDTO response=restTemplate.postForObject("http://fakestoreapi.com/products/",FakestoreDto,fakeStoreDTO.class);
+
+        return response.toproductResponseDto();
     }
 }
 

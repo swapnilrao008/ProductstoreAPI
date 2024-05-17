@@ -10,7 +10,7 @@ public class Product {
     private String description;
     private int id;
     private double price;
-    private int imageUrl;
+    private String imageUrl;
     private Category category;
 
 }
