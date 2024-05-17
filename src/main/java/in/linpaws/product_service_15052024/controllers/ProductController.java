@@ -18,6 +18,18 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @GetMapping("/products/categories")
+    public List<String> getAllCategories(){
+        return productService.getAllCategories();
+    }
+
+    @GetMapping("/products/category/{category}")
+    public List<ProductResponseDto> getCategoryDetail(@PathVariable("category") String category){
+
+        return productService.getCategoryDetail(category);
+    }
+
+
     @GetMapping("/products/{id}")
     public ProductResponseDto getProductDetail(@PathVariable("id") int productId){
         return productService.getSingleProduct(productId);
@@ -31,5 +43,6 @@ public class ProductController {
         }
 return list;
     }
+
 
 }
